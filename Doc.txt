@@ -1,0 +1,26 @@
+
+creation new VM with VMware Workstation: Ubuntu 25.10
+
+
+In a new terminal:
+
+-> snap install sqLitebrowser
+-> sudo apt install python3 requests
+
+-> touch FetchSwissSpeed.py
+-> Nano, test code to see if the connection work
+-> python3 FetchSwissData: problems with "Access to this API has been disallowed"
+   -> Hash and token were false, corrections and test code working.
+
+
+Making a new SQLite Database for first tests.
+
+CREATE TABLE "SwissSpeed" (
+	"id"	INTEGER,
+	"plate"	INTEGER,
+	"location"	INTEGER,
+	"speed"	INTEGER
+);
+
+New Python file: WriteData.py
+testing code to see how a python code can write the database.
