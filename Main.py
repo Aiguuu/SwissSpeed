@@ -7,7 +7,7 @@ import os
 import re
 
 URL = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
-TOKEN = "TON_TOKEN_ICI"
+TOKEN = "YOUR_TOKEN_HERE"
 FETCH_INTERVAL = 60  # en secondes
 
 DB_NAME_REGEX = re.compile(r"^[a-zA-Z0-9_\-]+$")
