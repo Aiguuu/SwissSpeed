@@ -24,3 +24,15 @@ CREATE TABLE "SwissSpeed" (
 
 New Python file: WriteData.py
 testing code to see how a python code can write the database.
+
+Rebuild of the structure
+More OO with more separations
+Four files:
+- SOAPClient fetches data from the API
+- DatexParser transforms XML into usable data 
+- DBHandler creates, writes and is in charge of everything that has to do with the databases
+- Main coordinate the actions
+
+Update
+Now the actions are coordinate by a new class "Collector"
+Main is in charge of a simple UI working in the console.
