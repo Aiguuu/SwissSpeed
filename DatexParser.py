@@ -89,7 +89,7 @@ if __name__ == "__main__":
     print("=== DatexParser Test (with SoapClient) ===")
 
     url = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
-    token = "ton_token_ici"
+    token = "YOUR_TOKEN_HERE"
 
     # --- Fetch XML ---
     try:
