@@ -3,69 +3,88 @@ from typing import List, Dict
 from SoapClient import SoapClient
 
 class DatexParser:
+
     def __init__(self, xml_text: str):
         self.xml_text = xml_text
 
-    def parse(self) -> List[Dict]:
-        """
-        Parse the XML and return a list of dictionaries with columns for SwissSpeed.
-        """
+    def parse(self):
         records = []
-        try:
-            root = ET.fromstring(self.xml_text)
-        except ET.ParseError as e:
-            raise ValueError(f"XML parsing error: {e}")
 
-        ns = {
-            'dx223': 'http://datex2.eu/schema/2/2_0'
-        }
+        root = ET.fromstring(self.xml_text)
+        ns = {"dx": "http://datex2.eu/schema/2/2_0"}
 
-        for site in root.findall('.//dx223:siteMeasurements', ns):
-            record = {}
+        for site in root.findall(".//dx:siteMeasurements", ns):
+
+            record = {
+                "Location": None,
+                "Timestamp": None,
+                "LightFlow": None,
+                "HeavyFlow": None,
+                "LightSpeed": None,
+                "HeavySpeed": None,
+                "Error": None
+            }
+
             try:
-                record['Location'] = site.find('dx223:measurementSiteReference', ns).attrib['id']
-                record['Timestamp'] = site.find('dx223:measurementTimeDefault', ns).text
+                record["Location"] = site.find(
+                    "dx:measurementSiteReference", ns
+                ).attrib["id"]
 
-                # Default values
-                record['LightFlow'] = None
-                record['HeavyFlow'] = None
-                record['LightSpeed'] = None
-                record['HeavySpeed'] = None
-                record['Error'] = None
+                record["Timestamp"] = site.find(
+                    "dx:measurementTimeDefault", ns
+                ).text
 
-                for mv in site.findall('dx223:measuredValue', ns):
-                    index = mv.attrib.get('index')
-                    basic = mv.find('dx223:measuredValue/dx223:basicData', ns)
+                seen = set()
+
+                for mv in site.findall("dx:measuredValue", ns):
+                    index = mv.attrib.get("index")
+                    seen.add(index)
+
+                    basic = mv.find("dx:measuredValue/dx:basicData", ns)
                     if basic is None:
                         continue
 
-                    # TrafficFlow
-                    flow = basic.find('dx223:TrafficFlow/dx223:vehicleFlow/dx223:vehicleFlowRate', ns)
+                    flow = basic.find(".//dx:vehicleFlowRate", ns)
                     if flow is not None:
-                        val = int(float(flow.text))
-                        if index in ['11', '12']:
-                            record['LightFlow'] = val
-                        elif index in ['21', '22']:
-                            record['HeavyFlow'] = val
+                        value = int(float(flow.text))
+                        if index == "11":
+                            record["LightFlow"] = value
+                        elif index == "21":
+                            record["HeavyFlow"] = value
 
-                    # TrafficSpeed
-                    speed = basic.find('dx223:TrafficSpeed/dx223:averageVehicleSpeed/dx223:speed', ns)
+                    speed = basic.find(".//dx:speed", ns)
                     if speed is not None:
-                        val = int(float(speed.text))
-                        if index in ['12']:
-                            record['LightSpeed'] = val
-                        elif index in ['22']:
-                            record['HeavySpeed'] = val
+                        value = int(float(speed.text))
+                        if index == "12":
+                            record["LightSpeed"] = value
+                        elif index == "22":
+                            record["HeavySpeed"] = value
+
+                missing = []
+                for idx, label in {
+                    "11": "LightFlow",
+                    "12": "LightSpeed",
+                    "21": "HeavyFlow",
+                    "22": "HeavySpeed"
+                }.items():
+                    if record[label] is None and idx not in seen:
+                        missing.append(label)
+
+                if missing:
+                    record["Error"] = "Missing from API: " + ", ".join(missing)
 
             except Exception as e:
-                record['Error'] = str(e)
+                record["Error"] = f"Parser error: {e}"
 
             records.append(record)
+
         return records
+
 
 # ==========================
 # MAIN FOR TESTING
 # ==========================
+
 if __name__ == "__main__":
     print("=== DatexParser Test (with SoapClient) ===")
 
@@ -76,10 +95,8 @@ if __name__ == "__main__":
     try:
         soap_client = SoapClient(url, token)
         print("--- Fetching XML ---")
-        xml_response = soap_client.fetch()  # xml_response est défini ici
+        xml_response = soap_client.fetch() 
 
-        # Vérification correcte avec ElementTree
-        import xml.etree.ElementTree as ET
         ns = {'dx223': 'http://datex2.eu/schema/2/2_0'}
         root = ET.fromstring(xml_response)
         site_measurements = root.findall('.//dx223:siteMeasurements', ns)
