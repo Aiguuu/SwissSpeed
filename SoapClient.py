@@ -7,7 +7,7 @@ class SoapClient:
 
     def __init__(self, url: str, token: str):
         self.url = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
-        self.token = "eyJvcmciOiI2NDA2NTFhNTIyZmEwNTAwMDEyOWJiZTEiLCJpZCI6ImQ4ZjdhMGQ0NTg0ZjRmMzliODI4YTNmZDdjNjdiMWI4IiwiaCI6Im11cm11cjEyOCJ9"
+        self.token = "YOUR_TOKEN_HERE"
 
     def build_envelope(self) -> str:
         return """<?xml version="1.0" encoding="UTF-8"?>
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     print("=== SoapClient Test ===")
 
     SOAP_URL = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
-    TOKEN = "eyJvcmciOiI2NDA2NTFhNTIyZmEwNTAwMDEyOWJiZTEiLCJpZCI6ImQ4ZjdhMGQ0NTg0ZjRmMzliODI4YTNmZDdjNjdiMWI4IiwiaCI6Im11cm11cjEyOCJ9"  # Replace with your actual token
+    TOKEN = "YOUR_TOKEN_HERE" 
 
     client = SoapClient(SOAP_URL, TOKEN)
 
