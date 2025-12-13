@@ -36,3 +36,8 @@ Four files:
 Update
 Now the actions are coordinate by a new class "Collector"
 Main is in charge of a simple UI working in the console.
+
+Update on the objectives
+Fetch all the data since last fetch is not how APIs work. API has a fix response that changes periodically. If passed and not saved (program closed): lost.
+Changing goals: the user can start fetching and writing his database in real time. More realistic and still interesting.
+
