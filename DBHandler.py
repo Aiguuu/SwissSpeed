@@ -1,6 +1,11 @@
 import sqlite3
 from typing import List, Dict
 
+#-------------------------------------------------------------------------------------------------------
+# Role: Manages the SQLite database operations.
+# Key Functions: Inserts parsed data into the database, updates records, and retrieves data.
+#-------------------------------------------------------------------------------------------------------
+    
 class DBHandler:
     def __init__(self, db_path: str):
         self.db_path = db_path
