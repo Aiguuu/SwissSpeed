@@ -2,6 +2,11 @@ import xml.etree.ElementTree as ET
 from typing import List, Dict
 from SoapClient import SoapClient
 
+#-------------------------------------------------------------------------
+# Role: Parses the data collected by Collector into a structured format.
+# Key Functions: Converts raw data into Python objects.
+#-------------------------------------------------------------------------
+
 class DatexParser:
 
     def __init__(self, xml_text: str):
