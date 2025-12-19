@@ -10,7 +10,8 @@ To this end, we are using VMware Workstation, Ubuntu and SQLite. The programs ar
 The data we are fetching comes from opentransportdata.swiss and represent measurements of car's speed in fix locations.
 
 Link to the data source: https://opentransportdata.swiss/de/cookbook/road-traffic-cookbook/rt-road-traffic-counters/
-Link to the full documentation: [Click Here](docs/Part1_Documentation.md)
+
+Link to the full documentation: [Click Here](Part1_Documentation.md)
 
 ## Part 2
 
