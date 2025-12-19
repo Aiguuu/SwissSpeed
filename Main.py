@@ -6,9 +6,14 @@ import sys
 import os
 import re
 
+#---------------------------------------------------------------------------------------------------------------------------------
+# Role: Entry point of the application. It initializes and orchestrates the data collection, parsing, and storage process.
+# Key Functions: Calls other modules like Collector, DatexParser, and DBHandler to perform the data workflow, with a simple UI.
+#---------------------------------------------------------------------------------------------------------------------------------
+
 URL = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
 TOKEN = "YOUR_TOKEN_HERE"
-FETCH_INTERVAL = 60  # en secondes
+FETCH_INTERVAL = 60  # in seconds
 
 DB_NAME_REGEX = re.compile(r"^[a-zA-Z0-9_\-]+$")
 
