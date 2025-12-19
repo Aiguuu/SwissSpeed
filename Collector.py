@@ -1,5 +1,10 @@
 import time
 
+#-------------------------------------------------------------------------------------------
+# Role: Responsible for collecting data from the external source (the API).
+# Key Functions: Uses SoapClient to fetch data and passes it to DatexParser for parsing.
+#-------------------------------------------------------------------------------------------
+
 class Collector:
 
     def __init__(self, soap, parser_cls, db, interval):
