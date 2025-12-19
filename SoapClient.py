@@ -1,5 +1,10 @@
 import requests
 
+#-----------------------------------------------------------------------------
+# Role: Handles communication with the external API using SOAP protocol.
+# Key Functions: Sends SOAP requests to the API and retrieves the response.
+#-----------------------------------------------------------------------------
+
 class SoapClient:
     """
     Simple SOAP client to fetch data from OTD Swiss API.
