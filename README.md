@@ -11,7 +11,7 @@ The data we are fetching comes from opentransportdata.swiss and represent measur
 
 Link to the data source: https://opentransportdata.swiss/de/cookbook/road-traffic-cookbook/rt-road-traffic-counters/
 
-Link to the full documentation: [Click Here](Part1_Documentation.md)
+Link to the full documentation: [Click Here](Part1/Docs/Part1_Documentation.md)
 
 ## Part 2
 
