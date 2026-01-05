@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "map-ui"
+version = "0.1.0"
+description = "Flask + Leaflet map UI with SQLite-backed API"
+readme = "README.md"
+authors = [{ name = "Your Name" }]
+requires-python = ">=3.10"
+dependencies = [
+  "Flask>=3.0.0",
+]
+
+[project.scripts]
+map-ui = "UI:main"
