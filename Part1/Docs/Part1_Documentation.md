@@ -7,7 +7,9 @@ Once the environment was stable, the focus shifted to data acquisition. Early it
 Initially, a command-line interface (CLI) version of the "Main" program was developed to facilitate debugging and manual control of the fetching process. Once the backend logic was verified, the Dashboard class was integrated to replace the CLI with a web-based visualization tool. Finally, the system was moved from manual execution to a fully automated service managed by systemd, ensuring that the software lifecycle is maintained without user intervention from the moment the operating system starts.
 
 ## 3.	Logical Architecture and Class Integration
+
 ![Code Structure](./code_structure.png)
+
 The provided diagram illustrates the modular design of the backend. The Main class serves as the entry point, orchestrating the Collector and the DBHandler. The Collector acts as a coordinator, utilizing the SoapClient to handle the communication protocol and the DatexParser to transform the raw XML records into workable Python objects. These objects are then passed to the DBHandler for persistence.
 Regarding the integration of the DashboardServer, it should be positioned as a parallel branch under Main. While the Collector is responsible for the "Write" operations (Ingestion), the DashboardServer is responsible for the "Read" operations. It connects directly to the DBHandler to fetch the records stored by the collector and serves them to the user via a Flask-hosted web page. This separation ensures that the data collection process and the user interface do not interfere with one another, a key principle in distributed and concurrent computing.
 
