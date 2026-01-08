@@ -1,11 +1,6 @@
 import sqlite3
 from typing import List, Dict
 
-#-------------------------------------------------------------------------------------------------------
-# Role: Manages the SQLite database operations.
-# Key Functions: Inserts parsed data into the database, updates records, and retrieves data.
-#-------------------------------------------------------------------------------------------------------
-    
 class DBHandler:
     def __init__(self, db_path: str):
         self.db_path = db_path
@@ -37,7 +32,8 @@ class DBHandler:
         Uses INSERT OR IGNORE to avoid duplicates based on Location+Timestamp.
         Returns the number of newly inserted rows.
         """
-        cursor = self.conn.cursor()
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
         inserted = 0
 
         for record in records:
@@ -56,18 +52,30 @@ class DBHandler:
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             """, values)
 
-            # Check if the row was actually inserted
             if cursor.rowcount > 0:
                 inserted += 1
 
-        self.conn.commit()
+        conn.commit()
+        conn.close() 
         return inserted
 
+
     def fetch_all(self):
-        """
-        Fetch all rows from the SwissSpeed table.
-        """
-        return self.conn.execute("SELECT * FROM SwissSpeed").fetchall()
+        db_path = "/home/theobias/Bureau/your_database.db"
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            
+            query = "SELECT * FROM SwissSpeed ORDER BY timestamp DESC LIMIT 2000"
+            
+            cursor.execute(query)
+            data = cursor.fetchall()
+            conn.close()
+            return data
+        except Exception as e:
+            print(f"Error SQL : {e}")
+            return []
+
 
     def close(self):
         """
