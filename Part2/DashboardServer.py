@@ -15,7 +15,7 @@ class DashboardServer:
         def dashboard():
             data = self._fetch_data()
             plots = self._generate_plots(data)
-            return render_template('Dashboard.html', **plots)
+            return render_template('home/theobias/SwissSpeed/Part2/Dashboard.html', **plots)
 
     def _fetch_data(self):
         data = self.db_handler.fetch_all()
