@@ -61,7 +61,7 @@ class DBHandler:
 
 
     def fetch_all(self):
-        db_path = "/home/theobias/Bureau/your_database.db"
+        db_path = "/home/theobias/traffic.db"
         try:
             conn = sqlite3.connect(db_path)
             cursor = conn.cursor()
