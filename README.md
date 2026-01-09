@@ -17,4 +17,4 @@ Link to the full documentation: [Click Here](Part1/Docs/Part1_Documentation.md)
 
 ...
 
-Link to the full documentation: [Click Here](Part2/docs/Part2_Documentation.md)
+Link to the full documentation: [Click Here](Part2/Docs/Part2_Documentation.md)
