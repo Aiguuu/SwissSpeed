@@ -1,0 +1,13 @@
+[Unit]
+Description=Traffic Monitoring Dashboard Service
+After=network.target
+
+[Service]
+User=theobias
+WorkingDirectory=/home/theobias/Bureau
+ExecStart=/home/theobias/venv/bin/python3 /home/theobias/Bureau/Main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
