@@ -9,7 +9,7 @@ def main():
     SOAP_URL = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
     TOKEN = "eyJvcmciOiI2NDA2NTFhNTIyZmEwNTAwMDEyOWJiZTEiLCJpZCI6ImQ4ZjdhMGQ0NTg0ZjRmMzliODI4YTNmZDdjNjdiMWI4IiwiaCI6Im11cm11cjEyOCJ9"
 
-    db_handler = DBHandler("/home/theobias/Bureau/your_database.db")
+    db_handler = DBHandler("/home/theobias/traffic.db")
 
     soap_client = SoapClient(SOAP_URL, TOKEN)
     datex_parser = DatexParser 

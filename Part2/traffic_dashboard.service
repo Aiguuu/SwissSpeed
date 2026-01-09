@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 User=theobias
-WorkingDirectory=~/SwissSpeed/Part2
-ExecStart= ~/test/test_env/bin/python3 ~/SwissSpeed/Part2/Main.py
+WorkingDirectory=/home/theobias/SwissSpeed/Part2
+ExecStart= /home/theobias/test/test_env/bin/python3 /home/theobias/SwissSpeed/Part2/Main.py
 Restart=always
 RestartSec=5
 
