@@ -1,10 +1,5 @@
 import requests
 
-#-----------------------------------------------------------------------------
-# Role: Handles communication with the external API using SOAP protocol.
-# Key Functions: Sends SOAP requests to the API and retrieves the response.
-#-----------------------------------------------------------------------------
-
 class SoapClient:
     """
     Simple SOAP client to fetch data from OTD Swiss API.
@@ -12,7 +7,7 @@ class SoapClient:
 
     def __init__(self, url: str, token: str):
         self.url = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
-        self.token = "YOUR_TOKEN_HERE"
+        self.token = "eyJvcmciOiI2NDA2NTFhNTIyZmEwNTAwMDEyOWJiZTEiLCJpZCI6ImQ4ZjdhMGQ0NTg0ZjRmMzliODI4YTNmZDdjNjdiMWI4IiwiaCI6Im11cm11cjEyOCJ9"
 
     def build_envelope(self) -> str:
         return """<?xml version="1.0" encoding="UTF-8"?>
@@ -73,7 +68,7 @@ if __name__ == "__main__":
     print("=== SoapClient Test ===")
 
     SOAP_URL = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
-    TOKEN = "YOUR_TOKEN_HERE" 
+    TOKEN = "eyJvcmciOiI2NDA2NTFhNTIyZmEwNTAwMDEyOWJiZTEiLCJpZCI6ImQ4ZjdhMGQ0NTg0ZjRmMzliODI4YTNmZDdjNjdiMWI4IiwiaCI6Im11cm11cjEyOCJ9"  # Replace with your actual token
 
     client = SoapClient(SOAP_URL, TOKEN)
 
@@ -89,10 +84,10 @@ if __name__ == "__main__":
     print("\n--- Testing fetch() ---")
     try:
         xml_response = client.fetch()
-        print("✅ fetch() succeeded, received response length:", len(xml_response))
+        print("fetch() succeeded, received response length:", len(xml_response))
         print("Preview:", xml_response[:400], "...")
     except requests.exceptions.HTTPError as http_err:
-        print("❌ HTTP error occurred:", http_err)
+        print("HTTP error occurred:", http_err)
     except Exception as err:
-        print("❌ Other error occurred:", err)
+        print("Other error occurred:", err)
 

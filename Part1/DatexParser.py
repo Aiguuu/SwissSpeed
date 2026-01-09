@@ -2,11 +2,6 @@ import xml.etree.ElementTree as ET
 from typing import List, Dict
 from SoapClient import SoapClient
 
-#-------------------------------------------------------------------------
-# Role: Parses the data collected by Collector into a structured format.
-# Key Functions: Converts raw data into Python objects.
-#-------------------------------------------------------------------------
-
 class DatexParser:
 
     def __init__(self, xml_text: str):
@@ -94,7 +89,7 @@ if __name__ == "__main__":
     print("=== DatexParser Test (with SoapClient) ===")
 
     url = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
-    token = "YOUR_TOKEN_HERE"
+    token = "ton_token_ici"
 
     # --- Fetch XML ---
     try:
@@ -108,10 +103,10 @@ if __name__ == "__main__":
         if not site_measurements:
             raise ValueError("SOAP fetch succeeded but no <siteMeasurements> found – check token and URL!")
 
-        print(f"✅ Fetch succeeded and {len(site_measurements)} siteMeasurements found")
+        print(f"Fetch succeeded and {len(site_measurements)} siteMeasurements found")
 
     except Exception as e:
-        print("❌ SOAP fetch failed:", e)
+        print("SOAP fetch failed:", e)
         exit(1)
 
     # --- Parse XML ---
@@ -128,8 +123,8 @@ if __name__ == "__main__":
                 if col not in rec:
                     raise ValueError(f"Missing column {col} in record: {rec}")
 
-        print(f"✅ Parsing succeeded, {len(data)} records found")
+        print(f"Parsing succeeded, {len(data)} records found")
         print("Sample records:", data[:3])
     except Exception as e:
-        print("❌ Parsing failed:", e)
+        print("Parsing failed:", e)
 
